@@ -1,15 +1,18 @@
+# apprunner.yaml  (place at repo root, exact filename)
 version: 1.0
-runtime: docker
+runtime: python311
+
 build:
   commands:
+    # With Python 3.11, installs during *build* are discarded.
+    # Install deps in pre-run instead. (Revised build process)
     build:
-      - echo "Building MediChat Pro application..."
-      - echo "Build completed successfully"
+      - echo "Build stage OK"
+
 run:
-  command: streamlit run main.py --server.port=8501 --server.address=0.0.0.0
+  runtime-version: 3.11
+  pre-run:
+    - pip3 install --no-cache-dir -r requirements.txt
+  command: streamlit run main.py --server.port=8080 --server.address=0.0.0.0
   network:
-    port: 8501
-    env: PORT
-  env:
-    - name: PORT
-      value: "8501"
+    port: 8080
