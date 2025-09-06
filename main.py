@@ -103,7 +103,7 @@ if st.session_state.vectorstore is None and st.session_state.chat_model is None:
             # Initialize chat model
             chat_model = get_chat_model(OPENAI_API_KEY)
             st.session_state.chat_model = chat_model
-            st.session_state.vectorstore = "initialized"  # Mark as initialized
+            st.session_state.vectorstore = collection  # Set actual collection object
             st.session_state.document_count = collection.count()
             st.success(f"Chat initialized with {collection.count()} existing documents from ChromaDB!")
     except Exception as e:
@@ -666,7 +666,7 @@ if prompt := st.chat_input("Ask about your medical documents or use commands lik
         st.markdown(prompt)
     
     # Generate response
-    if st.session_state.vectorstore and st.session_state.chat_model:
+    if st.session_state.vectorstore is not None and st.session_state.chat_model is not None:
         with st.chat_message("assistant"):
             start_time = time.time()
             
