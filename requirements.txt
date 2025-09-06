@@ -1,0 +1,13 @@
+streamlit==1.28.1
+fpdf==2.5.7
+pypdf==3.17.1
+langchain==0.1.0
+langchain_community==0.0.10
+sentence-transformers==2.2.2
+email-validator==2.1.0
+openai==0.28.1
+numpy==1.24.3
+chromadb==0.4.18
+boto3==1.34.0
+requests==2.31.0
+python-dotenv==1.0.0
