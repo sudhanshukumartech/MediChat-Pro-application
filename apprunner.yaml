@@ -1,0 +1,16 @@
+version: 1.0
+runtime: docker
+build:
+  commands:
+    build:
+      - echo "Building MediChat Pro application..."
+      - echo "Build completed successfully"
+run:
+  runtime-version: latest
+  command: streamlit run main.py --server.port=8501 --server.address=0.0.0.0
+  network:
+    port: 8501
+    env: PORT
+  env:
+    - name: PORT
+      value: "8501"
